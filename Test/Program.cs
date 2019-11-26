@@ -20,8 +20,6 @@ namespace Test
                     Keyboard.Update();
                     Console.ReadLine();
                 }
-                //Keyboard.SetColor(Color.Aqua);
-                //Keyboard.SetKey(Key.W, Color.White);
                 Keyboard.Update();
             }
             else

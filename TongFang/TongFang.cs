@@ -21,10 +21,11 @@ namespace TongFang
         private static HidStream _deviceStream;
         private static readonly Color[] colors = new Color[126];//6 * 21, some positions aren't used
                                                                 //since the keyboard has 101/102 keys
-        public static bool IsConnected { get; private set; }
-        public static Layout Layout { get; set; }
-        private static Dictionary<Key, byte> LayoutMap => Layout == Layout.ISO ? Layouts.ISO : Layouts.ANSI;
 
+        public static bool IsConnected { get; private set; }
+
+        public static Layout Layout { get; set; }
+        
         public static bool Initialize()
         {
             var devices = DeviceList.Local.GetHidDevices(VID).Where(d => d.ProductID == PID);
@@ -106,8 +107,16 @@ namespace TongFang
 
         public static void SetKey(Key k, Color clr)
         {
-            if(LayoutMap.TryGetValue(k, out var idx))
-                colors[idx] = clr;
+            if(Layout == Layout.ANSI)
+            {
+                if (Layouts.ANSI.TryGetValue(k, out var idx))
+                    colors[idx] = clr;
+            }
+            else
+            {
+                if(Layouts.ISO.TryGetValue(k, out var idx))
+                    colors[idx] = clr;
+            }
         }
 
         public static void SetColor(Color clr)
