@@ -43,696 +43,416 @@ namespace TongFang
         Welcome = 3
     }
 
-    //This is for ANSI
-    public enum Key : byte//weird math is col + ((5 - row) * 21)
+    public enum Key : byte
     {
-        //0,0
-        LEFT_CONTROL = 105,
+        ESCAPE,
 
-        //0,1 blank
+        F1,
 
-        //0,2
-        FN_Key = 107,
+        F2,
 
-        //0,3
-        LEFT_WINDOWS = 108,
+        F3,
 
-        //0,4
-        LEFT_ALT = 109,
+        F4,
 
-        //0,5 blank
-        //0,6 blank
+        F5,
 
-        //0,7
-        SPACE = 112,
+        F6,
 
-        //0,8 blank
-        //0,9 blank
+        F7,
 
-        //0,10
-        RIGHT_ALT = 115,
+        F8,
 
-        //0,11
-        MENU = 116,
+        F9,
 
-        //0,12
-        RIGHT_CONTROL = 117,
+        F10,
 
-        //0,13
-        ARROW_LEFT = 118,
+        F11,
 
-        //0,14
-        DOWN_ARROW = 119,
+        F12,
 
-        //0,15
-        RIGHT_ARROW = 120,
+        INSERT,
 
-        //0,16 blank
+        DELETE,
 
-        //0,17 blank
+        HOME,
 
-        //0,18 blank
+        END,
 
-        //0,19 blank
+        PAGE_UP,
 
-        //0,20 blank
+        PAGE_DOWN,
 
-        //1,0 blank
+        TILDE,
 
-        //1,1
-        LEFT_SHIFT = 85,
+        ONE,
 
-        //1,2 blank
+        TWO,
 
-        //1,3
-        Z = 87,
+        THREE,
 
-        //1,4 
-        X = 88,
+        FOUR,
 
-        //1,5
-        C = 89,
+        FIVE,
 
-        //1,6
-        V = 90,
+        SIX,
 
-        //1,7
-        B = 91,
+        SEVEN,
 
-        //1,8
-        N = 92,
+        EIGHT,
 
-        //1,9
-        M = 93,
+        NINE,
 
-        //1,10
-        COMMA = 94,
+        ZERO,
 
-        //1,11
-        PERIOD = 95,
+        MINUS,
 
-        //1,12
-        FORWARD_SLASH = 96,
+        EQUALS,
 
-        //1,13
-        RIGHT_SHIFT = 97,
+        BACKSPACE,
 
-        //1,14
-        UP_ARROW = 98,
+        NUMLOCK,
 
-        //1,15
-        END = 99,
+        NUMPAD_DIVIDE,
 
-        //1,16 blank
+        NUMPAD_MULTIPLY,
 
-        //1,17 blank
+        NUMPAD_MINUS,
 
-        //1,18 blank
+        TAB,
 
-        //1,19 blank
+        Q,
 
-        //1,20 blank
+        W,
 
-        //2,0 
-        CAPS_LOCK = 63,
+        E,
 
-        //2,1 blank
+        R,
 
-        //2,2
-        A = 65,
+        T,
 
-        //2,3
-        S = 66,
+        Y,
 
-        //2,4
-        D = 67,
+        U,
 
-        //2,5
-        F = 68,
+        I,
 
-        //2,6
-        G = 69,
+        O,
 
-        //2,7
-        H = 70,
+        P,
 
-        //2,8
-        J = 71,
+        OPEN_BRACKET,
 
-        //2,9
-        K = 72,
+        CLOSE_BRACKET,
 
-        //2,10
-        L = 73,
+        ENTER,
 
-        //2,11
-        SEMICOLON = 74,
+        NUMPAD_SEVEN,
 
-        //2,12
-        APOSTROPHE = 75,
+        NUMPAD_EIGHT,
 
-        //2,13 blank
+        NUMPAD_NINE,
 
-        //2,14
-        ENTER = 77,
+        NUMPAD_PLUS,
 
-        //2,15
-        PAGE_DOWN = 78,
+        CAPS_LOCK,
 
-        //2,16 blank
+        A,
 
-        //2,17 blank
+        S,
 
-        //2,18 blank
+        D,
 
-        //2,19 blank
+        F,
 
-        //2,20 blank
+        G,
 
-        //3,0
-        TAB = 42,
+        H,
 
-        //3,1 blank
+        J,
 
-        //3,2
-        Q = 44,
+        K,
 
-        //3,3
-        W = 45,
+        L,
 
-        //3,4
-        E = 46,
+        SEMICOLON,
 
-        //3,5
-        R = 47,
+        APOSTROPHE,
 
-        //3,6
-        T = 48,
+        HASHTAG,
 
-        //3,7
-        Y = 49,
+        NUMPAD_FOUR,
 
-        //3,8
-        U = 50,
+        NUMPAD_FIVE,
 
-        //3,9
-        I = 51,
+        NUMPAD_SIX,
 
-        //3,10
-        O = 52,
+        LEFT_SHIFT,
 
-        //3,11
-        P = 53,
+        BACKSLASH_UK,
 
-        //3,12
-        OPEN_BRACKET = 54,
+        Z,
 
-        //3,13
-        CLOSE_BRACKET = 55,
+        X,
 
-        //3,14
-        BACKSLASH = 56,
+        C,
 
-        //3,15
-        PAGE_UP = 57,
+        V,
 
-        //3,16 blank
+        B,
 
-        //3,17 blank
+        N,
 
-        //3,18 blank
+        M,
 
-        //3,19 blank
+        COMMA,
 
-        //3,20 blank
+        PERIOD,
 
-        //4,0
-        TILDE = 21,
+        FORWARD_SLASH,
 
-        //4,1
-        ONE = 22,
+        RIGHT_SHIFT,
 
-        //4,2
-        TWO = 23,
+        UP_ARROW,
 
-        //4,3
-        THREE = 24,
+        NUMPAD_ONE,
 
-        //4,4
-        FOUR = 25,
+        NUMPAD_TWO,
 
-        //4,5
-        FIVE = 26,
+        NUMPAD_THREE,
 
-        //4,6
-        SIX = 27,
+        NUMPAD_ENTER,
 
-        //4,7
-        SEVEN = 28,
+        LEFT_CONTROL,
 
-        //4,8
-        EIGHT = 29,
+        FN_Key,
 
-        //4,9
-        NINE = 30,
+        LEFT_WINDOWS,
 
-        //4,10
-        ZERO = 31,
+        LEFT_ALT,
 
-        //4,11
-        MINUS = 32,
+        SPACE,
 
-        //4,12
-        EQUALS = 33,
+        RIGHT_ALT,
 
-        //4,13 blank
+        MENU,
 
-        //4,14
-        BACKSPACE = 35,
+        RIGHT_CONTROL,
 
-        //4,15
-        HOME = 36,
+        ARROW_LEFT,
 
-        //4,16 blank
+        DOWN_ARROW,
 
-        //4,17 blank
+        RIGHT_ARROW,
 
-        //4,18 blank
+        NUMPAD_0,
 
-        //4,19 blank
-
-        //4,20 blank
-
-        //5,0
-        ESCPAE = 0,
-
-        //5,1
-        F1 = 1,
-
-        //5,2
-        F2 = 2,
-
-        //5,3
-        F3 = 3,
-
-        //5,4
-        F4 = 4,
-
-        //5,5
-        F5 = 5,
-        
-        //5,6
-        F6 = 6,
-
-        //5,7
-        F7 = 7,
-
-        //5,8
-        F8 = 8,
-
-        //5,9
-        F9 = 9,
-
-        //5,10
-        F10 = 10,
-
-        //5,11
-        F11 = 11,
-
-        //5,12
-        F12 = 12,
-
-        //5,13
-        INSERT = 13,
-
-        //5,14
-        PRINT_SCREEN = 14,
-
-        //5,15
-        DELETE = 15
-
-        //5,16 blank
-
-        //5,17 blank
-
-        //5,18 blank
-
-        //5,19 blank
-
-        //5,20 blank
+        NUMPAD_PERIOD,
+        PRINT_SCREEN,
+        BACKSLASH
     }
 
-    public enum ISOKey : byte//weird math is col + ((5 - row) * 21)
+    public enum Layout
     {
-        //0,0
-        LEFT_CONTROL = 105,
-
-        //0,1 blank
-
-        //0,2
-        FN_Key = 107,
-
-        //0,3
-        LEFT_WINDOWS = 108,
-
-        //0,4
-        LEFT_ALT = 109,
-
-        //0,5 blank
-        //0,6 blank
-
-        //0,7
-        SPACE = 112,
-
-        //0,8 blank
-        //0,9 blank
-
-        //0,10
-        RIGHT_ALT = 115,
-
-        //0,11
-        MENU = 116,
-
-        //0,12
-        RIGHT_CONTROL = 117,
-
-        //0,13
-        ARROW_LEFT = 118,
-
-        //0,14
-        DOWN_ARROW = 119,
-
-        //0,15
-        RIGHT_ARROW = 120,
-
-        //0,16 
-        NUMPAD_0 = 121,
-
-        //0,17 
-        NUMPAD_PERIOD = 122,
-        //0,18 blank
-
-        //0,19 blank
-
-        //0,20 blank
-
-        //1,0 blank
-        LEFT_SHIFT = 84,
-
-        //1,1 blank
-
-        //1,2
-        BACKSLASH_UK = 86,
-
-        //1,3
-        Z = 87,
-
-        //1,4 
-        X = 88,
-
-        //1,5
-        C = 89,
-
-        //1,6
-        V = 90,
-
-        //1,7
-        B = 91,
-
-        //1,8
-        N = 92,
-
-        //1,9
-        M = 93,
-
-        //1,10
-        COMMA = 94,
-
-        //1,11
-        PERIOD = 95,
-
-        //1,12
-        FORWARD_SLASH = 96,
-
-        //1,13
-        RIGHT_SHIFT = 97,
-
-        //1,14
-        UP_ARROW = 98,
-
-        //1,15
-        NUMPAD_ONE = 99,
-
-        //1,16
-        NUMPAD_TWO = 100,
-
-        //1,17 
-        NUMPAD_THREE = 101,
-
-        //1,18
-        NUMPAD_ENTER = 102,
-
-        //1,19 blank
-
-        //1,20 blank
-
-        //2,0 
-        CAPS_LOCK = 63,
-
-        //2,1 blank
-
-        //2,2
-        A = 65,
-
-        //2,3
-        S = 66,
-
-        //2,4
-        D = 67,
-
-        //2,5
-        F = 68,
-
-        //2,6
-        G = 69,
-
-        //2,7
-        H = 70,
-
-        //2,8
-        J = 71,
-
-        //2,9
-        K = 72,
-
-        //2,10
-        L = 73,
-
-        //2,11
-        SEMICOLON = 74,
-
-        //2,12
-        APOSTROPHE = 75,
-
-        //2,13 
-        HASHTAG = 76, //UNDER ENTER, TODO
-
-        //2,14 blank
-
-        //2,15
-        NUMPAD_FOUR = 78,
-
-        //2,16 
-        NUMPAD_FIVE = 79,
-
-        //2,17
-        NUMPAD_SIX = 80,
-
-        //2,18 blank
-
-        //2,19 blank
-
-        //2,20 blank
-
-        //3,0
-        TAB = 42,
-
-        //3,1 blank
-
-        //3,2
-        Q = 44,
-
-        //3,3
-        W = 45,
-
-        //3,4
-        E = 46,
-
-        //3,5
-        R = 47,
-
-        //3,6
-        T = 48,
-
-        //3,7
-        Y = 49,
-
-        //3,8
-        U = 50,
-
-        //3,9
-        I = 51,
-
-        //3,10
-        O = 52,
-
-        //3,11
-        P = 53,
-
-        //3,12
-        OPEN_BRACKET = 54,
-
-        //3,13
-        CLOSE_BRACKET = 55,
-
-        //3,14
-        ENTER = 56,
-
-        //3,15
-        NUMPAD_SEVEN = 57,
-
-        //3,16 
-        NUMPAD_EIGHT = 58,
-
-        //3,17 
-        NUMPAD_NINE = 59,
-
-        //3,18 
-        NUMPAD_PLUS = 60,
-
-        //3,19 blank
-
-        //3,20 blank
-
-        //4,0
-        TILDE = 21,
-
-        //4,1
-        ONE = 22,
-
-        //4,2
-        TWO = 23,
-
-        //4,3
-        THREE = 24,
-
-        //4,4
-        FOUR = 25,
-
-        //4,5
-        FIVE = 26,
-
-        //4,6
-        SIX = 27,
-
-        //4,7
-        SEVEN = 28,
-
-        //4,8
-        EIGHT = 29,
-
-        //4,9
-        NINE = 30,
-
-        //4,10
-        ZERO = 31,
-
-        //4,11
-        MINUS = 32,
-
-        //4,12
-        EQUALS = 33,
-
-        //4,13 blank
-
-        //4,14
-        BACKSPACE = 35,
-
-        //4,15
-        NUMLOCK = 36,
-
-        //4,16 
-        NUMPAD_DIVIDE = 37,
-
-        //4,17
-        NUMPAD_MULTIPLY = 38,
-
-        //4,18 
-        NUMPAD_MINUS = 39,
-
-        //4,19 blank
-
-        //4,20 blank
-
-        //5,0
-        ESCAPE = 0,
-
-        //5,1
-        F1 = 1,
-
-        //5,2
-        F2 = 2,
-
-        //5,3
-        F3 = 3,
-
-        //5,4
-        F4 = 4,
-
-        //5,5
-        F5 = 5,
-
-        //5,6
-        F6 = 6,
-
-        //5,7
-        F7 = 7,
-
-        //5,8
-        F8 = 8,
-
-        //5,9
-        F9 = 9,
-
-        //5,10
-        F10 = 10,
-
-        //5,11
-        F11 = 11,
-
-        //5,12
-        F12 = 12,
-
-        //5,13
-        INSERT = 13,
-
-        //5,14
-        DELETE = 14,
-
-        //5,15
-        HOME = 15,
-
-        //5,16 
-        END = 16,
-
-        //5,17 
-        PAGE_UP = 17,
-
-        //5,18 
-        PAGE_DOWN = 18,
-
-        //5,19 blank
-
-        //5,20 blank
+        ISO,
+        ANSI
+    }
+
+    public static class Layouts
+    {
+        public static readonly Dictionary<Key, byte> ISO = new Dictionary<Key, byte>
+        {
+            { Key.LEFT_CONTROL , 105},
+            { Key.FN_Key , 107},
+            { Key.LEFT_WINDOWS , 108},
+            { Key.LEFT_ALT , 109},
+            { Key.SPACE , 112},
+            { Key.RIGHT_ALT , 115},
+            { Key.MENU , 116},
+            { Key.RIGHT_CONTROL , 117},
+            { Key.ARROW_LEFT , 118},
+            { Key.DOWN_ARROW , 119},
+            { Key.RIGHT_ARROW , 120},
+            { Key.NUMPAD_0 , 121},
+            { Key.NUMPAD_PERIOD , 122},
+            { Key.LEFT_SHIFT , 84},
+            { Key.BACKSLASH_UK , 86},
+            { Key.Z , 87},
+            { Key.X , 88},
+            { Key.C , 89},
+            { Key.V , 90},
+            { Key.B , 91},
+            { Key.N , 92},
+            { Key.M , 93},
+            { Key.COMMA , 94},
+            { Key.PERIOD , 95},
+            { Key.FORWARD_SLASH , 96},
+            { Key.RIGHT_SHIFT , 97},
+            { Key.UP_ARROW , 98},
+            { Key.NUMPAD_ONE , 99},
+            { Key.NUMPAD_TWO , 100},
+            { Key.NUMPAD_THREE , 101},
+            { Key.NUMPAD_ENTER , 102},
+            { Key.CAPS_LOCK , 63},
+            { Key.A , 65},
+            { Key.S , 66},
+            { Key.D , 67},
+            { Key.F , 68},
+            { Key.G , 69},
+            { Key.H , 70},
+            { Key.J , 71},
+            { Key.K , 72},
+            { Key.L , 73},
+            { Key.SEMICOLON , 74},
+            { Key.APOSTROPHE , 75},
+            { Key.HASHTAG , 76},
+            { Key.NUMPAD_FOUR , 78},
+            { Key.NUMPAD_FIVE , 79},
+            { Key.NUMPAD_SIX , 80},
+            { Key.TAB , 42},
+            { Key.Q , 44},
+            { Key.W , 45},
+            { Key.E , 46},
+            { Key.R , 47},
+            { Key.T , 48},
+            { Key.Y , 49},
+            { Key.U , 50},
+            { Key.I , 51},
+            { Key.O , 52},
+            { Key.P , 53},
+            { Key.OPEN_BRACKET , 54},
+            { Key.CLOSE_BRACKET , 55},
+            { Key.ENTER , 56},
+            { Key.NUMPAD_SEVEN , 57},
+            { Key.NUMPAD_EIGHT , 58},
+            { Key.NUMPAD_NINE , 59},
+            { Key.NUMPAD_PLUS , 60},
+            { Key.TILDE , 21},
+            { Key.ONE , 22},
+            { Key.TWO , 23},
+            { Key.THREE , 24},
+            { Key.FOUR , 25},
+            { Key.FIVE , 26},
+            { Key.SIX , 27},
+            { Key.SEVEN , 28},
+            { Key.EIGHT , 29},
+            { Key.NINE , 30},
+            { Key.ZERO , 31},
+            { Key.MINUS , 32},
+            { Key.EQUALS , 33},
+            { Key.BACKSPACE , 35},
+            { Key.NUMLOCK , 36},
+            { Key.NUMPAD_DIVIDE , 37},
+            { Key.NUMPAD_MULTIPLY , 38},
+            { Key.NUMPAD_MINUS , 39},
+            { Key.ESCAPE , 0},
+            { Key.F1 , 1},
+            { Key.F2 , 2},
+            { Key.F3 , 3},
+            { Key.F4 , 4},
+            { Key.F5 , 5},
+            { Key.F6 , 6},
+            { Key.F7 , 7},
+            { Key.F8 , 8},
+            { Key.F9 , 9},
+            { Key.F10 , 10},
+            { Key.F11 , 11},
+            { Key.F12 , 12},
+            { Key.INSERT , 13},
+            { Key.DELETE , 14},
+            { Key.HOME , 15},
+            { Key.END , 16},
+            { Key.PAGE_UP , 17},
+            { Key.PAGE_DOWN , 18 }
+        };
+
+        public static readonly Dictionary<Key, byte> ANSI = new Dictionary<Key, byte>
+        {
+            { Key.LEFT_CONTROL , 105},
+            { Key.FN_Key , 107},
+            { Key.LEFT_WINDOWS , 108},
+            { Key.LEFT_ALT , 109},
+            { Key.SPACE , 112},
+            { Key.RIGHT_ALT , 115},
+            { Key.MENU , 116},
+            { Key.RIGHT_CONTROL , 117},
+            { Key.ARROW_LEFT , 118},
+            { Key.DOWN_ARROW , 119},
+            { Key.RIGHT_ARROW , 120},
+            { Key.LEFT_SHIFT , 85},
+            { Key.Z , 87},
+            { Key.X , 88},
+            { Key.C , 89},
+            { Key.V , 90},
+            { Key.B , 91},
+            { Key.N , 92},
+            { Key.M , 93},
+            { Key.COMMA , 94},
+            { Key.PERIOD , 95},
+            { Key.FORWARD_SLASH , 96},
+            { Key.RIGHT_SHIFT , 97},
+            { Key.UP_ARROW , 98},
+            { Key.END , 99},
+            { Key.CAPS_LOCK , 63},
+            { Key.A , 65},
+            { Key.S , 66},
+            { Key.D , 67},
+            { Key.F , 68},
+            { Key.G , 69},
+            { Key.H , 70},
+            { Key.J , 71},
+            { Key.K , 72},
+            { Key.L , 73},
+            { Key.SEMICOLON , 74},
+            { Key.APOSTROPHE , 75},
+            { Key.ENTER , 77},
+            { Key.PAGE_DOWN , 78},
+            { Key.TAB , 42},
+            { Key.Q , 44},
+            { Key.W , 45},
+            { Key.E , 46},
+            { Key.R , 47},
+            { Key.T , 48},
+            { Key.Y , 49},
+            { Key.U , 50},
+            { Key.I , 51},
+            { Key.O , 52},
+            { Key.P , 53},
+            { Key.OPEN_BRACKET , 54},
+            { Key.CLOSE_BRACKET , 55},
+            { Key.BACKSLASH , 56},
+            { Key.PAGE_UP , 57},
+            { Key.TILDE , 21},
+            { Key.ONE , 22},
+            { Key.TWO , 23},
+            { Key.THREE , 24},
+            { Key.FOUR , 25},
+            { Key.FIVE , 26},
+            { Key.SIX , 27},
+            { Key.SEVEN , 28},
+            { Key.EIGHT , 29},
+            { Key.NINE , 30},
+            { Key.ZERO , 31},
+            { Key.MINUS , 32},
+            { Key.EQUALS , 33},
+            { Key.BACKSPACE , 35},
+            { Key.HOME , 36},
+            { Key.ESCAPE , 0},
+            { Key.F1 , 1},
+            { Key.F2 , 2},
+            { Key.F3 , 3},
+            { Key.F4 , 4},
+            { Key.F5 , 5},
+            { Key.F6 , 6},
+            { Key.F7 , 7},
+            { Key.F8 , 8},
+            { Key.F9 , 9},
+            { Key.F10 , 10},
+            { Key.F11 , 11},
+            { Key.F12 , 12},
+            { Key.INSERT , 13},
+            { Key.PRINT_SCREEN , 14},
+            { Key.DELETE , 15 }
+        };
     }
 }

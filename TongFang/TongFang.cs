@@ -22,6 +22,8 @@ namespace TongFang
         private static readonly Color[] colors = new Color[126];//6 * 21, some positions aren't used
                                                                 //since the keyboard has 101/102 keys
         public static bool IsConnected { get; private set; }
+        public static Layout Layout { get; set; }
+        private static Dictionary<Key, byte> LayoutMap => Layout == Layout.ISO ? Layouts.ISO : Layouts.ANSI;
 
         public static bool Initialize()
         {
@@ -35,7 +37,10 @@ namespace TongFang
                 _device = GetFromUsages(devices, USAGE_PAGE, USAGE);
 
                 if (_device?.TryOpen(out _deviceStream) ?? false)
+                {
+                    Layout = Layout.ANSI;
                     return IsConnected = true;
+                }
                 else
                     _deviceStream?.Close();
             }
@@ -101,7 +106,8 @@ namespace TongFang
 
         public static void SetKey(Key k, Color clr)
         {
-            colors[(byte)k] = clr;
+            if(LayoutMap.TryGetValue(k, out var idx))
+                colors[idx] = clr;
         }
 
         public static void SetColor(Color clr)
