@@ -11,9 +11,9 @@ namespace Test
             if (Keyboard.Initialize())
             {
                 Console.WriteLine("Initialized successfully!!");
-                Keyboard.SetColor(Color.Blue);
+                Keyboard.SetColor(Color.Aqua);
                 Keyboard.Update();
-                Console.WriteLine("Set to Blue");
+                Console.WriteLine("Set to Aqua");
             }
             else
                 Console.WriteLine("Could not initialize device!!");

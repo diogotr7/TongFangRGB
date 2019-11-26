@@ -50,7 +50,7 @@ namespace TongFang
             if (colors.Length != 126)//should be ROW * COLUMN
                 throw new ArgumentOutOfRangeException();
 
-            byte light = 50;//light is brightnes, 0 to 50
+            byte light = 25;//light is brightnes, 0 to 50
             byte save = 0;//saves to EC, treated as bool
             
             //settting type might not be needed
