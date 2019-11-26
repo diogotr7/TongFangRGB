@@ -23,11 +23,11 @@ namespace TongFang
         private static HidDevice _device;
         private static HidStream _deviceStream;
         private static readonly Color[] colors = new Color[126];
+        private static Dictionary<Key, byte> layout;
         #endregion
 
         #region Properties
         public static bool IsConnected { get; private set; }
-        public static Layout Layout { get; set; }
         #endregion
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace TongFang
         /// <param name="brightness">Brightness value, between 0 and 100. Defaults to 50.</param>
         /// <param name="layout">ISO or ANSI. Defaults to ANSI</param>
         /// <returns>Returns true if successful.</returns>
-        public static bool Initialize(int brightness = 50, Layout layout = Layout.ANSI)
+        public static bool Initialize(int brightness = 50, Layout lyt = Layout.ANSI)
         {
             var devices = DeviceList.Local.GetHidDevices(VID).Where(d => d.ProductID == PID);
 
@@ -49,7 +49,7 @@ namespace TongFang
 
                 if (_device?.TryOpen(out _deviceStream) ?? false)
                 {
-                    Layout = layout;
+                    layout = lyt == Layout.ANSI ? Layouts.ANSI : Layouts.ISO;
                     SetEffectType(Control.Default, Effect.UserMode, 0, (byte)(brightness / 2), 0, 0, 0);
                     return IsConnected = true;
                 }
@@ -67,7 +67,7 @@ namespace TongFang
         /// <summary>
         /// Writes colors to the keyboard
         /// </summary>
-        public static void Update()
+        public static bool Update()
         {
             //packet structure: 65 bytes
             //byte 0 = 0 ???
@@ -95,7 +95,10 @@ namespace TongFang
                 }
             }
             catch
-            { }
+            {
+                return false;
+            }
+            return true;
         }
 
         /// <summary>
@@ -103,18 +106,10 @@ namespace TongFang
         /// </summary>
         /// <param name="k">key to set</param>
         /// <param name="clr">color to set the key to</param>
-        public static void SetKey(Key k, Color clr)
+        public static void SetKeyColor(Key k, Color clr)
         {
-            if(Layout == Layout.ANSI)
-            {
-                if (Layouts.ANSI.TryGetValue(k, out var idx))
-                    colors[idx] = clr;
-            }
-            else
-            {
-                if(Layouts.ISO.TryGetValue(k, out var idx))
-                    colors[idx] = clr;
-            }
+            if (layout.TryGetValue(k, out var idx))
+                colors[idx] = clr;
         }
 
         /// <summary>
@@ -132,6 +127,8 @@ namespace TongFang
         /// </summary>
         public static void Disconnect()
         {
+            SetColorFull(Color.Blue);
+            Update();
             _deviceStream?.Close();
             IsConnected = false;
         }

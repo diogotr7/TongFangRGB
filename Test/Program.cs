@@ -5,9 +5,9 @@ using TongFang;
 
 namespace Test
 {
-    class Program
+    public static class Program
     {
-        static void Main()
+        public static void Main()
         {
             if (Keyboard.Initialize())
             {
@@ -16,14 +16,16 @@ namespace Test
                 Keyboard.Update();
                 foreach (Key key in (Key[])Enum.GetValues(typeof(Key)))
                 {
-                    Keyboard.SetKey((Key)key, Color.Red);
+                    Keyboard.SetKeyColor(key, Color.Red);
                     Keyboard.Update();
                     Console.ReadLine();
                 }
                 Keyboard.Update();
             }
             else
+            {
                 Console.WriteLine("Could not initialize device!!");
+            }
 
             Console.Read();
         }
