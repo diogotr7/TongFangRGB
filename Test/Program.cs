@@ -7,12 +7,12 @@ namespace Test
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             if (Keyboard.Initialize())
             {
                 Console.WriteLine("Initialized successfully!!");
-                Keyboard.SetColor(Color.Purple);
+                Keyboard.SetColorFull(Color.Purple);
                 Keyboard.Update();
                 foreach (Key key in (Key[])Enum.GetValues(typeof(Key)))
                 {

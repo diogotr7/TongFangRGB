@@ -43,219 +43,118 @@ namespace TongFang
         Welcome = 3
     }
 
-    public enum Key : byte
-    {
-        ESCAPE,
-
-        F1,
-
-        F2,
-
-        F3,
-
-        F4,
-
-        F5,
-
-        F6,
-
-        F7,
-
-        F8,
-
-        F9,
-
-        F10,
-
-        F11,
-
-        F12,
-
-        INSERT,
-
-        DELETE,
-
-        HOME,
-
-        END,
-
-        PAGE_UP,
-
-        PAGE_DOWN,
-
-        TILDE,
-
-        ONE,
-
-        TWO,
-
-        THREE,
-
-        FOUR,
-
-        FIVE,
-
-        SIX,
-
-        SEVEN,
-
-        EIGHT,
-
-        NINE,
-
-        ZERO,
-
-        MINUS,
-
-        EQUALS,
-
-        BACKSPACE,
-
-        NUMLOCK,
-
-        NUMPAD_DIVIDE,
-
-        NUMPAD_MULTIPLY,
-
-        NUMPAD_MINUS,
-
-        TAB,
-
-        Q,
-
-        W,
-
-        E,
-
-        R,
-
-        T,
-
-        Y,
-
-        U,
-
-        I,
-
-        O,
-
-        P,
-
-        OPEN_BRACKET,
-
-        CLOSE_BRACKET,
-
-        ENTER,
-
-        NUMPAD_SEVEN,
-
-        NUMPAD_EIGHT,
-
-        NUMPAD_NINE,
-
-        NUMPAD_PLUS,
-
-        CAPS_LOCK,
-
-        A,
-
-        S,
-
-        D,
-
-        F,
-
-        G,
-
-        H,
-
-        J,
-
-        K,
-
-        L,
-
-        SEMICOLON,
-
-        APOSTROPHE,
-
-        HASHTAG,
-
-        NUMPAD_FOUR,
-
-        NUMPAD_FIVE,
-
-        NUMPAD_SIX,
-
-        LEFT_SHIFT,
-
-        BACKSLASH_UK,
-
-        Z,
-
-        X,
-
-        C,
-
-        V,
-
-        B,
-
-        N,
-
-        M,
-
-        COMMA,
-
-        PERIOD,
-
-        FORWARD_SLASH,
-
-        RIGHT_SHIFT,
-
-        UP_ARROW,
-
-        NUMPAD_ONE,
-
-        NUMPAD_TWO,
-
-        NUMPAD_THREE,
-
-        NUMPAD_ENTER,
-
-        LEFT_CONTROL,
-
-        FN_Key,
-
-        LEFT_WINDOWS,
-
-        LEFT_ALT,
-
-        SPACE,
-
-        RIGHT_ALT,
-
-        MENU,
-
-        RIGHT_CONTROL,
-
-        ARROW_LEFT,
-
-        DOWN_ARROW,
-
-        RIGHT_ARROW,
-
-        NUMPAD_0,
-
-        NUMPAD_PERIOD,
-        PRINT_SCREEN,
-        BACKSLASH
-    }
-
     public enum Layout
     {
         ISO,
         ANSI
+    }
+
+    public enum Key : byte
+    {
+        ESCAPE,
+        F1,
+        F2,
+        F3,
+        F4,
+        F5,
+        F6,
+        F7,
+        F8,
+        F9,
+        F10,
+        F11,
+        F12,
+        INSERT,
+        DELETE,
+        HOME,
+        END,
+        PAGE_UP,
+        PAGE_DOWN,
+        TILDE,
+        ONE,
+        TWO,
+        THREE,
+        FOUR,
+        FIVE,
+        SIX,
+        SEVEN,
+        EIGHT,
+        NINE,
+        ZERO,
+        MINUS,
+        EQUALS,
+        BACKSPACE,
+        NUMLOCK,
+        NUMPAD_DIVIDE,
+        NUMPAD_MULTIPLY,
+        NUMPAD_MINUS,
+        TAB,
+        Q,
+        W,
+        E,
+        R,
+        T,
+        Y,
+        U,
+        I,
+        O,
+        P,
+        OPEN_BRACKET,
+        CLOSE_BRACKET,
+        ENTER,
+        NUMPAD_SEVEN,
+        NUMPAD_EIGHT,
+        NUMPAD_NINE,
+        NUMPAD_PLUS,
+        CAPS_LOCK,
+        A,
+        S,
+        D,
+        F,
+        G,
+        H,
+        J,
+        K,
+        L,
+        SEMICOLON,
+        APOSTROPHE,
+        HASHTAG,
+        NUMPAD_FOUR,
+        NUMPAD_FIVE,
+        NUMPAD_SIX,
+        LEFT_SHIFT,
+        BACKSLASH_UK,
+        Z,
+        X,
+        C,
+        V,
+        B,
+        N,
+        M,
+        COMMA,
+        PERIOD,
+        FORWARD_SLASH,
+        RIGHT_SHIFT,
+        UP_ARROW,
+        NUMPAD_ONE,
+        NUMPAD_TWO,
+        NUMPAD_THREE,
+        NUMPAD_ENTER,
+        LEFT_CONTROL,
+        FN_Key,
+        LEFT_WINDOWS,
+        LEFT_ALT,
+        SPACE,
+        RIGHT_ALT,
+        MENU,
+        RIGHT_CONTROL,
+        ARROW_LEFT,
+        DOWN_ARROW,
+        RIGHT_ARROW,
+        NUMPAD_0,
+        NUMPAD_PERIOD,
+        PRINT_SCREEN,
+        BACKSLASH
     }
 
     public static class Layouts

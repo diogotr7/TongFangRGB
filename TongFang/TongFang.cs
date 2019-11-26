@@ -25,7 +25,7 @@ namespace TongFang
         public static bool IsConnected { get; private set; }
 
         public static Layout Layout { get; set; }
-        
+
         public static bool Initialize()
         {
             var devices = DeviceList.Local.GetHidDevices(VID).Where(d => d.ProductID == PID);
@@ -40,6 +40,7 @@ namespace TongFang
                 if (_device?.TryOpen(out _deviceStream) ?? false)
                 {
                     Layout = Layout.ANSI;
+                    SetEffectType(Control.Default, Effect.UserMode, 0, 25, 0, 0, 0);
                     return IsConnected = true;
                 }
                 else
@@ -53,16 +54,6 @@ namespace TongFang
 
         public static bool Update()
         {
-            if (colors.Length != 126)//should be ROW * COLUMN
-                throw new ArgumentOutOfRangeException();
-
-            byte light = 25;//light is brightnes, 0 to 50
-            byte save = 0;//saves to EC, treated as bool
-            
-            //settting type might not be needed
-            SetEffectType(Control.Default, Effect.UserMode,
-                        0, light, 0, 0, save);
-
             //packet structure: 65 bytes
             //byte 0 = 0 ???
             //byte 1 = 0 ???
@@ -96,15 +87,6 @@ namespace TongFang
             return true;
         }
 
-        public static void SetKeyWithCoords(byte row, byte col, Color clr)
-        {
-            if (row > ROWS || col > COLUMNS)
-                throw new ArgumentOutOfRangeException();
-
-            int colorIndex = col + ((5 - row) * 21);
-            colors[colorIndex] = clr;
-        }
-
         public static void SetKey(Key k, Color clr)
         {
             if(Layout == Layout.ANSI)
@@ -119,7 +101,7 @@ namespace TongFang
             }
         }
 
-        public static void SetColor(Color clr)
+        public static void SetColorFull(Color clr)
         {
             for (int i = 0; i < colors.Length; i++)
                 colors.SetValue(clr, i);
@@ -171,60 +153,6 @@ namespace TongFang
                 0,
                 0
             };
-            try
-            {
-                _deviceStream.SetFeature(buffer);
-            }
-            catch
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        private static bool SetColor(byte idx, Color clr)//no idea what this does, i assume idx is a zone maybe
-        {
-            var buffer = new byte[9]
-            {
-                0,
-                20,
-                0,
-                idx,
-                clr.R,
-                clr.G,
-                clr.B,
-                0,
-                0
-            };
-
-            try
-            {
-                _deviceStream.SetFeature(buffer);
-            }
-            catch
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        private static bool SetPicture(byte save)//no clue what this is
-        {
-            byte[] buffer = new byte[9]
-            {
-                0,
-                18,
-                0,
-                0,
-                8,
-                save,
-                0,
-                0,
-                0
-            };
-
             try
             {
                 _deviceStream.SetFeature(buffer);
