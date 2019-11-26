@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading;
 using TongFang;
 
 namespace Test
@@ -13,10 +14,9 @@ namespace Test
                 Console.WriteLine("Initialized successfully!!");
                 Keyboard.SetColor(Color.Purple);
                 Keyboard.Update();
-                foreach (ISOKey key in (ISOKey[])Enum.GetValues(typeof(ISOKey)))
+                foreach (Key key in (Key[])Enum.GetValues(typeof(Key)))
                 {
-                    Console.WriteLine("Writing to key" + key.ToString());
-                    Keyboard.SetKey((Key)key, Color.Green);
+                    Keyboard.SetKey((Key)key, Color.Red);
                     Keyboard.Update();
                     Console.ReadLine();
                 }
