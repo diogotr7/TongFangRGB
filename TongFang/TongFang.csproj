@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="HidSharp" Version="2.1.0" />
+    <PackageReference Include="System.Management" Version="4.6.0" />
   </ItemGroup>
 
 </Project>

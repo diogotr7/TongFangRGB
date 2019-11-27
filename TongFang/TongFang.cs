@@ -1,10 +1,11 @@
-using System;
+﻿using System;
 using System.Linq;
 using System.Drawing;
 using System.Collections.Generic;
 using HidSharp;
 using HidSharp.Reports;
 using HidSharp.Reports.Encodings;
+using System.Management;
 
 namespace TongFang
 {
@@ -51,6 +52,9 @@ namespace TongFang
                 {
                     layout = lyt == Layout.ANSI ? Layouts.ANSI : Layouts.ISO;
                     SetEffectType(Control.Default, Effect.UserMode, 0, (byte)(brightness / 2), 0, 0, 0);
+                    var data = new object();
+                    WMIReadECRAM(1858uL, ref data);
+
                     return IsConnected = true;
                 }
                 else
@@ -210,6 +214,25 @@ namespace TongFang
             }
 
             return null;
+        }
+
+        public static bool WMIReadECRAM(ulong Addr, ref object data)
+        {
+            try
+            {
+                ManagementObject managementObject = new ManagementObject("root\\WMI", "AcpiTest_MULong.InstanceName='ACPI\\PNP0C14\\1_1'", null);
+                ManagementBaseObject methodParameters = managementObject.GetMethodParameters("GetSetULong");
+                Addr = 1099511627776L + Addr;
+                methodParameters["Data"] = Addr;
+                ManagementBaseObject managementBaseObject = managementObject.InvokeMethod("GetSetULong", methodParameters, null);
+                data = managementBaseObject["Return"];
+                return true;
+            }
+            catch (ManagementException ex)
+            {
+                Console.WriteLine(ex);
+                return false;
+            }
         }
         #endregion
     }
