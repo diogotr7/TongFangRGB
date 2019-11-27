@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Drawing;
 using System.Collections.Generic;
@@ -110,6 +110,8 @@ namespace TongFang
         {
             if (layout.TryGetValue(k, out var idx))
                 colors[idx] = clr;
+            else
+                colors[idx] = Color.Black;
         }
 
         /// <summary>
@@ -127,8 +129,6 @@ namespace TongFang
         /// </summary>
         public static void Disconnect()
         {
-            SetColorFull(Color.Blue);
-            Update();
             _deviceStream?.Close();
             IsConnected = false;
         }
