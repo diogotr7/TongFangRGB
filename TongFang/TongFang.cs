@@ -22,8 +22,9 @@ namespace TongFang
         #region Fields
         private static HidDevice _device;
         private static HidStream _deviceStream;
-        private static readonly Color[] colors = new Color[126];
-        private static Dictionary<Key, byte> layout;
+        private static readonly Color[] _colors = new Color[126];
+        private static Dictionary<Key, byte> _layout;
+        private static bool _dirty = true;
         #endregion
 
         #region Properties
@@ -49,7 +50,7 @@ namespace TongFang
 
                 if (_device?.TryOpen(out _deviceStream) ?? false)
                 {
-                    layout = lyt == Layout.ANSI ? Layouts.ANSI : Layouts.ISO;
+                    _layout = lyt == Layout.ANSI ? Layouts.ANSI : Layouts.ISO;
                     SetEffectType(Control.Default, Effect.UserMode, 0, (byte)(brightness / 2), 0, 0, 0);
                     return IsConnected = true;
                 }
@@ -69,6 +70,8 @@ namespace TongFang
         /// </summary>
         public static bool Update()
         {
+            if (!_dirty)
+                return true;
             //packet structure: 65 bytes
             //byte 0 = 0 ???
             //byte 1 = 0 ???
@@ -85,9 +88,9 @@ namespace TongFang
                     {
                         int colorIndex = column + ((5 - row) * 21);
 
-                        packet[2 + column] = colors[colorIndex].B;
-                        packet[23 + column] = colors[colorIndex].G;
-                        packet[44 + column] = colors[colorIndex].R;
+                        packet[2 + column] = _colors[colorIndex].B;
+                        packet[23 + column] = _colors[colorIndex].G;
+                        packet[44 + column] = _colors[colorIndex].R;
                     }
 
                     SetRowIndex(row);
@@ -98,6 +101,7 @@ namespace TongFang
             {
                 return false;
             }
+            _dirty = false;
             return true;
         }
 
@@ -108,10 +112,18 @@ namespace TongFang
         /// <param name="clr">color to set the key to</param>
         public static void SetKeyColor(Key k, Color clr)
         {
-            if (layout.TryGetValue(k, out var idx))
-                colors[idx] = clr;
+            if (_layout.TryGetValue(k, out var idx))
+            {
+                if(_colors[idx] != clr)
+                {
+                    _colors[idx] = clr;
+                    _dirty = true;
+                }
+            }
             else
-                colors[idx] = Color.Black;
+            {
+                _colors[idx] = Color.Black;
+            }
         }
 
         /// <summary>
@@ -120,8 +132,11 @@ namespace TongFang
         /// <param name="clr"></param>
         public static void SetColorFull(Color clr)
         {
-            for (int i = 0; i < colors.Length; i++)
-                colors.SetValue(clr, i);
+            for (int i = 0; i < _colors.Length; i++)
+            {
+                _colors.SetValue(clr, i);
+                _dirty = true;
+            }
         }
 
         /// <summary>
