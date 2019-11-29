@@ -12,21 +12,24 @@ namespace Test
             if (Keyboard.Initialize())
             {
                 Console.WriteLine("Initialized successfully!!");
-                Keyboard.SetColorFull(Color.Purple);
-                Keyboard.Update();
-                foreach (Key key in (Key[])Enum.GetValues(typeof(Key)))
+                for(int i = 0; i<1000; i++)
                 {
-                    Keyboard.SetKeyColor(key, Color.Red);
+                    Keyboard.SetColorFull(Color.Red);
                     Keyboard.Update();
-                    Console.ReadLine();
+                    Thread.Sleep(10);
+                    Keyboard.SetColorFull(Color.Green);
+                    Keyboard.Update();
+                    Thread.Sleep(10);
+                    Keyboard.SetColorFull(Color.Blue);
+                    Keyboard.Update();
+                    Thread.Sleep(10);
                 }
-                Keyboard.Update();
             }
             else
             {
                 Console.WriteLine("Could not initialize device!!");
             }
-
+            Keyboard.Disconnect();
             Console.Read();
         }
     }
