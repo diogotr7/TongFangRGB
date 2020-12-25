@@ -96,7 +96,7 @@ namespace TongFang
 
                     SetRowIndex(row);
                     _deviceStream.Write(packet);
-                    System.Threading.Thread.Sleep(1);
+                    Thread.Sleep(1);
                 }
             }
             catch
@@ -114,17 +114,13 @@ namespace TongFang
         /// <param name="clr">color to set the key to</param>
         public static void SetKeyColor(Key k, Color clr)
         {
-            if (_layout.TryGetValue(k, out var idx))
+            if (!_layout.TryGetValue(k, out var idx))
+                return;
+
+            if (_colors[idx] != clr)
             {
-                if(_colors[idx] != clr)
-                {
-                    _colors[idx] = clr;
-                    _dirty = true;
-                }
-            }
-            else
-            {
-                _colors[idx] = Color.Black;
+                _colors[idx] = clr;
+                _dirty = true;
             }
         }
 
@@ -135,10 +131,9 @@ namespace TongFang
         public static void SetColorFull(Color clr)
         {
             for (int i = 0; i < _colors.Length; i++)
-            {
-                _colors.SetValue(clr, i);
-                _dirty = true;
-            }
+                _colors[i] = clr;
+            
+            _dirty = true;
         }
 
         /// <summary>
