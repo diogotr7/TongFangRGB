@@ -268,7 +268,7 @@ namespace TongFang
         public static readonly Dictionary<Key, byte> ANSI = new Dictionary<Key, byte>
         {
             { Key.LEFT_CONTROL , 105},
-            { Key.FN_Key , 107},
+            { Key.FN_Key , 106},
             { Key.LEFT_WINDOWS , 108},
             { Key.LEFT_ALT , 109},
             { Key.SPACE , 112},

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using HidSharp;
 using HidSharp.Reports;
 using HidSharp.Reports.Encodings;
+using System.Threading;
 
 namespace TongFang
 {
@@ -95,6 +96,7 @@ namespace TongFang
 
                     SetRowIndex(row);
                     _deviceStream.Write(packet);
+                    System.Threading.Thread.Sleep(1);
                 }
             }
             catch
