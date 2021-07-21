@@ -14,6 +14,7 @@ namespace TongFang
         #region Constants
         private const int VID = 0x048D;
         private const int PID = 0xCE00;
+        private const int PID2 = 0x6004;
         private const uint USAGE_PAGE = 0xFF03;
         private const uint USAGE = 0x001;
         private const byte ROWS = 6;
@@ -40,7 +41,7 @@ namespace TongFang
         /// <returns>Returns true if successful.</returns>
         public static bool Initialize(int brightness = 50, Layout lyt = Layout.ANSI)
         {
-            var devices = DeviceList.Local.GetHidDevices(VID).Where(d => d.ProductID == PID);
+            var devices = DeviceList.Local.GetHidDevices(VID).Where(d => d.ProductID == PID || d.ProductID == PID2);
 
             if (!devices.Any())
                 return false;
