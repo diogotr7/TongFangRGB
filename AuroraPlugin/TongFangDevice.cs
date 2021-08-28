@@ -18,21 +18,27 @@ namespace TongFangAuroraPlugin
     {
         public override string DeviceName => "TongFang";
 
-        public override bool IsInitialized => Keyboard.IsConnected;
+        public override bool IsInitialized { get; protected set; }
+
+        private ITongFangKeyboard _keyboard;
 
         public override bool Initialize()
         {
             var layout = Global.Configuration.VarRegistry.GetVariable<Layout>($"{DeviceName}_layout");
             var brightness = Global.Configuration.VarRegistry.GetVariable<int>($"{DeviceName}_brightness");
 
-            return Keyboard.Initialize(brightness, layout);
+            return IsInitialized = TongFindFinder.TryFind(brightness, layout, out _keyboard);
         }
 
         public override void Shutdown()
         {
-            Keyboard.SetColorFull(Global.Configuration.VarRegistry.GetVariable<Color>($"{DeviceName}_restore_color"));
-            Keyboard.Update();
-            Keyboard.Disconnect();
+            foreach (var item in _keyboard.Keys)
+            {
+                _keyboard.SetKeyColor(item, 0, 0, 0);
+            }
+            _keyboard.Update();
+            _keyboard.Dispose();
+            IsInitialized = false;
         }
 
         public override bool UpdateDevice(Dictionary<DeviceKeys, System.Drawing.Color> keyColors, DoWorkEventArgs e, bool forced = false)
@@ -46,8 +52,8 @@ namespace TongFangAuroraPlugin
                 if (TongFangKeyMap.KeyMap.TryGetValue(kc.Key, out var key))
                 {
                     var clr = Color.FromArgb((int)(rRatio * kc.Value.R), (int)(gRatio * kc.Value.G), (int)(bRatio * kc.Value.B));
-
-                    Keyboard.SetKeyColor(key, ColorUtils.CorrectWithAlpha(clr));
+                    var corrected = ColorUtils.CorrectWithAlpha(clr);
+                    _keyboard.SetKeyColor(key, corrected.R, corrected.G, corrected.B);
                 }
             }
 
@@ -55,7 +61,9 @@ namespace TongFangAuroraPlugin
             if (delay > 0)
                 Thread.Sleep(delay);
 
-            return Keyboard.Update();
+            _keyboard.Update();
+
+            return true;
         }
 
         protected override void RegisterVariables(VariableRegistry variableRegistry)

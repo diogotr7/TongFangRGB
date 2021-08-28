@@ -9,15 +9,18 @@ namespace Test
     {
         public static void Main()
         {
-            if (Keyboard.Initialize())
+            if (TongFindFinder.TryFind(50, Layout.ANSI, out var keyboard))
             {
                 var color = Color.Red;
                 Console.WriteLine("Initialized successfully!!");
                 for(int i = 0; i<1000; i++)
                 {
                     color = ChangeHue(color, 4f);
-                    Keyboard.SetColorFull(color);
-                    Keyboard.Update();
+                    foreach (var key in keyboard.Keys)
+                    {
+                        keyboard.SetKeyColor(key, color.R, color.G, color.B);
+                    }
+                    keyboard.Update();
                     Thread.Sleep(10);
                 }
             }
@@ -25,7 +28,7 @@ namespace Test
             {
                 Console.WriteLine("Could not initialize device!!");
             }
-            Keyboard.Disconnect();
+            keyboard.Dispose();
             Console.Read();
         }
 
