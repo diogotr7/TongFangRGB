@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Drawing;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using TongFang;
 
@@ -7,91 +8,76 @@ namespace Test
 {
     public static class Program
     {
+        private struct Color
+        {
+            public byte R;
+            public byte G;
+            public byte B;
+
+            public Color(byte r, byte g, byte b)
+            {
+                R = r;
+                G = g;
+                B = b;
+            }
+
+            public override bool Equals(object obj)
+            {
+                if (!(obj is Color other))
+                {
+                    return false;
+                }
+
+                return this == other;
+            }
+
+            public override int GetHashCode()
+            {
+                return (R, G, B).GetHashCode();
+            }
+
+            public static bool operator ==(Color left, Color right)
+            {
+                return left.R == right.R &&
+                    left.G == right.G &&
+                    left.B == right.B;
+            }
+
+            public static bool operator !=(Color left, Color right)
+            {
+                return !(left == right);
+            }
+        }
+
+        private static readonly Color[] _colors = 
+            Enumerable.Range(0, 126)
+            .Select(i => new Color((byte)i, (byte)i, (byte)i)).ToArray();
+
         public static void Main()
         {
-            if (TongFindFinder.TryFind(50, Layout.ANSI, out var keyboard))
+            const byte ROWS = 6;
+            const byte COLUMNS = 21;
+            var arrays = new List<byte[]>();
+            for (byte row = 0; row < ROWS; row++)
             {
-                var color = Color.Red;
-                Console.WriteLine("Initialized successfully!!");
-                for(int i = 0; i<1000; i++)
+                var packet = new byte[65];
+
+
+                for (byte column = 0; column < COLUMNS; column++)
                 {
-                    color = ChangeHue(color, 4f);
-                    foreach (var key in keyboard.Keys)
-                    {
-                        keyboard.SetKeyColor(key, color.R, color.G, color.B);
-                    }
-                    keyboard.Update();
-                    Thread.Sleep(10);
+                    int colorIndex = column + ((5 - row) * 21);
+
+                    packet[2 + column] = _colors[colorIndex].B;
+                    packet[23 + column] = _colors[colorIndex].G;
+                    packet[44 + column] = _colors[colorIndex].R;
                 }
-            }
-            else
-            {
-                Console.WriteLine("Could not initialize device!!");
-            }
-            keyboard.Dispose();
-            Console.Read();
-        }
-
-        public static Color ChangeHue(Color color, double offset)
-        {
-            if (offset == 0)
-                return color;
-
-            ToHsv(color, out var hue, out var saturation, out var value);
-
-            hue += offset;
-
-            while (hue > 360) hue -= 360;
-            while (hue < 0) hue += 360;
-
-            return FromHsv(hue, saturation, value);
-        }
-
-        public static void ToHsv(Color color, out double hue, out double saturation, out double value)
-        {
-            var max = Math.Max(color.R, Math.Max(color.G, color.B));
-            var min = Math.Min(color.R, Math.Min(color.G, color.B));
-
-            var delta = max - min;
-
-            hue = 0d;
-            if (delta != 0)
-            {
-                if (color.R == max) hue = (color.G - color.B) / (double)delta;
-                else if (color.G == max) hue = 2d + (color.B - color.R) / (double)delta;
-                else if (color.B == max) hue = 4d + (color.R - color.G) / (double)delta;
+                arrays.Add(packet);
+                //SetRowIndex(row);
+                //_deviceStream.Write(packet);
+                //Thread.Sleep(1);
             }
 
-            hue *= 60;
-            if (hue < 0.0) hue += 360;
 
-            saturation = (max == 0) ? 0 : 1d - (1d * min / max);
-            value = max / 255d;
-        }
-
-        public static Color FromHsv(double hue, double saturation, double value)
-        {
-            saturation = Math.Max(Math.Min(saturation, 1), 0);
-            value = Math.Max(Math.Min(value, 1), 0);
-
-            var hi = Convert.ToInt32(Math.Floor(hue / 60)) % 6;
-            var f = hue / 60 - Math.Floor(hue / 60);
-
-            value *= 255;
-            var v = (byte)(value);
-            var p = (byte)(value * (1 - saturation));
-            var q = (byte)(value * (1 - f * saturation));
-            var t = (byte)(value * (1 - (1 - f) * saturation));
-
-            switch (hi)
-            {
-                case 0: return Color.FromArgb(v, t, p);
-                case 1: return Color.FromArgb(q, v, p);
-                case 2: return Color.FromArgb(p, v, t);
-                case 3: return Color.FromArgb(p, q, v);
-                case 4: return Color.FromArgb(t, p, v);
-                default: return Color.FromArgb(v, p, q);
-            }
-        }
+        }  
     }
 }
