@@ -7,8 +7,12 @@ namespace TongFang
     {
         IEnumerable<Key> Keys { get; }
 
-        void Update();
+        void SetBrightness(byte brightness);
+
+        void SetCoordColor(byte row, byte column, byte r, byte g, byte b);
 
         void SetKeyColor(Key k, byte r, byte g, byte b);
+
+        bool Update();
     }
 }

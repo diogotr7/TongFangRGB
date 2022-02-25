@@ -7,66 +7,33 @@ namespace TongFang
 {
     internal class TongFangKeyboard : ITongFangKeyboard
     {
-        private struct Color
-        {
-            public byte R;
-            public byte G;
-            public byte B;
-
-            public Color(byte r, byte g, byte b)
-            {
-                R = r;
-                G = g;
-                B = b;
-            }
-
-            public override bool Equals(object obj)
-            {
-                if (!(obj is Color other))
-                {
-                    return false;
-                }
-
-                return this == other;
-            }
-
-            public override int GetHashCode()
-            {
-                return (R, G, B).GetHashCode();
-            }
-
-            public static bool operator ==(Color left, Color right)
-            {
-                return left.R == right.R &&
-                    left.G == right.G &&
-                    left.B == right.B;
-            }
-
-            public static bool operator !=(Color left, Color right)
-            {
-                return !(left == right);
-            }
-        }
         private const byte ROWS = 6;
         private const byte COLUMNS = 21;
+        private const byte CHUNK_SIZE = 2 + (COLUMNS * 3);//2 padding, 3 per color
 
-        private readonly HidDevice _device;
         private readonly HidStream _deviceStream;
-        private readonly Color[] _colors = new Color[126];
         private readonly Dictionary<Key, byte> _layout;
-        private bool _dirty = true;
+        private readonly byte[][] _rows;
 
         public IEnumerable<Key> Keys => _layout.Keys;
 
-        public TongFangKeyboard(HidDevice device, int brightness, Layout lyt)
+        internal TongFangKeyboard(HidDevice device, int brightness, Layout lyt)
         {
-            _device = device;
-
-            if (_device.TryOpen(out _deviceStream))
+            _rows = new byte[ROWS][];
+            for (int i = 0; i < ROWS; i++)
             {
-                _layout = lyt == Layout.ANSI ? Layouts.ANSI : Layouts.ISO;
-                SetEffectType(Control.Default, Effect.UserMode, 0, (byte)(brightness / 2), 0, 0, 0);
+                _rows[i] = new byte[CHUNK_SIZE];
             }
+
+            _layout = lyt == Layout.ANSI ? Layouts.ANSI : Layouts.ISO;
+            _deviceStream = device.Open();
+
+            SetEffectType(Control.Default, Effect.UserMode, 0, (byte)(brightness / 2), 0, 0, 0);
+        }
+
+        public void SetBrightness(byte brightness)
+        {
+            SetEffectType(Control.Default, Effect.UserMode, 0, (byte)(brightness / 2), 0, 0, 0);
         }
 
         public void SetKeyColor(Key k, byte r, byte g, byte b)
@@ -74,54 +41,43 @@ namespace TongFang
             if (!_layout.TryGetValue(k, out var idx))
                 return;
 
-            var clr = new Color(r, g, b);
-            if (_colors[idx] != clr)
-            {
-                _colors[idx] = clr;
-                _dirty = true;
-            }
+            byte row = (byte)(5 - (idx / COLUMNS));
+            byte column = (byte)(idx % COLUMNS);
+
+            SetCoordColor(row, column, r, g, b);
         }
 
-        public void Update()
+        public void SetCoordColor(byte row, byte column, byte r, byte g, byte b)
         {
-            if (!_dirty)
-                return;
-            //packet structure: 65 bytes
-            //byte 0 = 0 ???
-            //byte 1 = 0 ???
-            //byte 2 to 22 = B
-            //byte 23 to 43 = G
-            //byte 44 to 64 = R
+            if (row > ROWS)
+                throw new ArgumentOutOfRangeException(nameof(row));
+            if (column > COLUMNS)
+                throw new ArgumentOutOfRangeException(nameof(column));
 
-            var packet = new byte[65];
+            //2 padding + which column + color offset
+            //all blues first, then all greens, then all reds
+            _rows[row][2 + column + 0] = b;
+            _rows[row][2 + column + 21] = g;
+            _rows[row][2 + column + 42] = r;
+        }
+
+        public bool Update()
+        {
             try
             {
-                for (byte row = 0; row < ROWS; row++)
+                for (byte i = 0; i < ROWS; i++)
                 {
-                    for (byte column = 0; column < COLUMNS; column++)
-                    {
-                        int colorIndex = column + ((5 - row) * 21);
-
-                        packet[2 + column] = _colors[colorIndex].B;
-                        packet[23 + column] = _colors[colorIndex].G;
-                        packet[44 + column] = _colors[colorIndex].R;
-                    }
-
-                    SetRowIndex(row);
-                    _deviceStream.Write(packet);
+                    SetRowIndex(i);
+                    _deviceStream.Write(_rows[i]);
                     Thread.Sleep(1);
                 }
+
+                return true;
             }
             catch
             {
-                return;
+                return false;
             }
-            _dirty = false;
-        }
-
-        public void Dispose()
-        {
-            _deviceStream?.Dispose();
         }
 
         private bool SetRowIndex(byte idx)
@@ -174,6 +130,11 @@ namespace TongFang
             }
 
             return true;
+        }
+
+        public void Dispose()
+        {
+            _deviceStream?.Dispose();
         }
     }
 }

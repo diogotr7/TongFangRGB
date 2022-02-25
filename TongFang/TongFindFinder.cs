@@ -15,31 +15,19 @@ namespace TongFang
         private const uint USAGE_PAGE = 0xFF03;
         private const uint USAGE = 0x001;
 
-        public static IEnumerable<ITongFangKeyboard> Find()
-        {
-            var devices = DeviceList.Local.GetHidDevices(VID).Where(d => d.ProductID == PID || d.ProductID == PID2);
-
-            if (!devices.Any())
-               yield break;
-
-            foreach (var device in devices)
-            {
-                if (!device.VerifyUsageAndUsagePage(USAGE_PAGE, USAGE))
-                    continue;
-
-                yield return new TongFangKeyboard(device, 7, Layout.ANSI);
-            }
-        }
-
         public static bool TryFind(int brightness, Layout layout, out ITongFangKeyboard keyboard)
         {
+            if (brightness < 1 || brightness > 100)
+                throw new ArgumentOutOfRangeException(nameof(brightness));
+            if (layout != Layout.ANSI && layout != Layout.ISO)
+                throw new ArgumentOutOfRangeException(nameof(layout));
+
+            keyboard = null;
+
             var devices = DeviceList.Local.GetHidDevices(VID).Where(d => d.ProductID == PID || d.ProductID == PID2);
 
             if (!devices.Any())
-            {
-                keyboard = null;
                 return false;
-            }
 
             try
             {
@@ -53,9 +41,10 @@ namespace TongFang
                 }
             }
             catch
-            { }
+            {
+                //couldn't verify usage for some reason, skip
+            }
 
-            keyboard = null;
             return false;
         }
 
