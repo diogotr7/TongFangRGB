@@ -12,7 +12,7 @@ namespace TongFang
         private const byte CHUNK_SIZE = 2 + (COLUMNS * 3);//2 padding, 3 per color
 
         private readonly HidStream _deviceStream;
-        private readonly Dictionary<Key, byte> _layout;
+        private readonly Dictionary<Key, (byte Row, byte Column)> _layout;
         private readonly byte[][] _rows;
 
         public IEnumerable<Key> Keys => _layout.Keys;
@@ -25,7 +25,7 @@ namespace TongFang
                 _rows[i] = new byte[CHUNK_SIZE];
             }
 
-            _layout = lyt == Layout.ANSI ? Layouts.ANSI : Layouts.ISO;
+            _layout = lyt == Layout.ANSI ? Layouts.AnsiCoords : Layouts.IsoCoords;
             _deviceStream = device.Open();
 
             SetEffectType(Control.Default, Effect.UserMode, 0, (byte)(brightness / 2), 0, 0, 0);
@@ -41,10 +41,7 @@ namespace TongFang
             if (!_layout.TryGetValue(k, out var idx))
                 return;
 
-            byte row = (byte)(5 - (idx / COLUMNS));
-            byte column = (byte)(idx % COLUMNS);
-
-            SetCoordColor(row, column, r, g, b);
+            SetCoordColor(idx.Row, idx.Column, r, g, b);
         }
 
         public void SetCoordColor(byte row, byte column, byte r, byte g, byte b)
