@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\TongFang\TongFang.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="RGB.NET.Core">
+      <HintPath>..\..\..\..\..\..\..\Program%20Files\Artemis\RGB.NET.Core.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>
