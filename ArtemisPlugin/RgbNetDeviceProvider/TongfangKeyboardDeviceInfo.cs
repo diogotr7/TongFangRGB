@@ -21,7 +21,7 @@ namespace RGB.NET.Devices.Tongfang
         {
             TongFangKeyboard = kb;
             DeviceName = "TongFang Keyboard";
-            Model = "Unknown";
+            Model = "Tongfang";
         }
 
     }

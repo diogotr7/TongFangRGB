@@ -2,9 +2,9 @@
   "Guid": "3d35c306-89f9-4ef0-9d99-490154089c49",
   "Name": "TongFang Device Provider",
   "Description": "Support for keyboards in Tongfang laptops",
-  "Author": "chris",
+  "Author": "ChrisPapp",
   "Website": null,
-  "Repository": null,
+  "Repository": "https://github.com/diogotr7/TongFangRGB",
   "Version": "1.0.0.0",
   "Main": "ArtemisPlugin.dll"
 }
