@@ -25,7 +25,7 @@ namespace RGB.NET.Devices.Tongfang
         /// <inheritdoc />
         protected override IEnumerable<IRGBDevice> LoadDevices()
         {
-            if (TongFindFinder.TryFind(100, Layout.ISO, out ITongFangKeyboard kb))
+            if (TongFindFinder.TryFind(out ITongFangKeyboard kb))
                 yield return new TongfangKeyboardRGBDevice(new TongfangKeyboardDeviceInfo(kb), new TongfangUpdateQueue(GetUpdateTrigger(), kb));
         }
 

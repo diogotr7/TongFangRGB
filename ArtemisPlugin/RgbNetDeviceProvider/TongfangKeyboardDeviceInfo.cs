@@ -3,7 +3,7 @@ using TongFang;
 
 namespace RGB.NET.Devices.Tongfang
 {
-    public class TongfangKeyboardDeviceInfo : IRGBDeviceInfo
+    public class TongfangKeyboardDeviceInfo : IKeyboardDeviceInfo
     {
         public RGBDeviceType DeviceType => RGBDeviceType.Keyboard;
 
@@ -15,6 +15,8 @@ namespace RGB.NET.Devices.Tongfang
 
         public object LayoutMetadata { get; set; }
 
+        public KeyboardLayoutType Layout { get; set; }
+
         public ITongFangKeyboard TongFangKeyboard { get; }
 
         public TongfangKeyboardDeviceInfo(ITongFangKeyboard kb)
@@ -23,6 +25,5 @@ namespace RGB.NET.Devices.Tongfang
             DeviceName = "TongFang Keyboard";
             Model = "Tongfang";
         }
-
     }
 }

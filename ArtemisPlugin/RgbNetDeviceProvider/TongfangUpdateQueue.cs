@@ -15,10 +15,12 @@ namespace RGB.NET.Devices.Tongfang
 
         protected override void Update(in ReadOnlySpan<(object key, Color color)> dataSet)
         {
-            foreach ((object key, Color color) item in dataSet)
+            foreach ((object key, Color color) in dataSet)
             {
-                _keyboard.SetKeyColor((Key)item.key, item.color.GetR(), item.color.GetG(), item.color.GetB());
+                (byte row, byte column) = ((byte, byte))key;
+                _keyboard.SetCoordColor(row, column, color.GetR(), color.GetG(), color.GetB());
             }
+
             _keyboard.Update();
         }
     }

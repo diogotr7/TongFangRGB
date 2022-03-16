@@ -9,10 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="RGB.NET.Core">
-      <HintPath>..\..\..\..\..\..\..\Program%20Files\Artemis\RGB.NET.Core.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
+    <PackageReference Include="RGB.NET.Core" Version="1.0.0-prerelease7" />
   </ItemGroup>
 
 </Project>

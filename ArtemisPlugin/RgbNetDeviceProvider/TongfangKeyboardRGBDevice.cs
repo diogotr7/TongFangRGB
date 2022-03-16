@@ -12,17 +12,12 @@ namespace RGB.NET.Devices.Tongfang
 
         private void InitializeLayout()
         {
-            int x = 0;
-            foreach (TongFang.Key key in DeviceInfo.TongFangKeyboard.Keys)
+            foreach ((LedId ledId, (byte row, byte column) mapping) in TongfangLedMapping.GetLayout(DeviceInfo.Layout))
             {
-                if (!TongfangLedMapping.TongfangLedMapping.Mapping.TryGetValue(key, out LedId ledId))
-                {
-                    continue;
-                }
-
-                AddLed(ledId, new Point(x, 0), new Size(19), key);
-                x += 20;
+                AddLed(ledId, new Point(mapping.column * 20, mapping.row * 20), new Size(19));
             }
         }
+
+        protected override object GetLedCustomData(LedId ledId) => TongfangLedMapping.GetLayout(DeviceInfo.Layout)[ledId];
     }
 }
