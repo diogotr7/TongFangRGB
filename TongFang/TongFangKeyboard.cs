@@ -7,48 +7,44 @@ namespace TongFang
 {
     internal class TongFangKeyboard : ITongFangKeyboard
     {
-        private const byte ROWS = 6;
-        private const byte COLUMNS = 21;
-        private const byte CHUNK_SIZE = 2 + (COLUMNS * 3);//2 padding, 3 per color
-
         private readonly HidStream _deviceStream;
-        private readonly Dictionary<Key, (byte Row, byte Column)> _layout;
         private readonly byte[][] _rows;
 
-        public IEnumerable<Key> Keys => _layout.Keys;
+        public int Rows { get; } = 6;
 
-        internal TongFangKeyboard(HidDevice device, int brightness, Layout lyt)
+        public int Columns { get; } = 21;
+
+        internal TongFangKeyboard(HidDevice device)
         {
-            _rows = new byte[ROWS][];
-            for (int i = 0; i < ROWS; i++)
+            _rows = new byte[Rows][];
+            for (int i = 0; i < Rows; i++)
             {
-                _rows[i] = new byte[CHUNK_SIZE];
+                //2 padding, 3 per color
+                _rows[i] = new byte[2 + (Columns * 3)];
             }
 
-            _layout = lyt == Layout.ANSI ? Layouts.AnsiCoords : Layouts.IsoCoords;
             _deviceStream = device.Open();
 
-            SetEffectType(Control.Default, Effect.UserMode, 0, (byte)(brightness / 2), 0, 0, 0);
+            //max brightness is 50
+            SetEffectType(Control.Default, Effect.UserMode, 0, 50, 0, 0, 0);
         }
 
-        public void SetBrightness(byte brightness)
+        public void SetColor(byte r, byte g, byte b)
         {
-            SetEffectType(Control.Default, Effect.UserMode, 0, (byte)(brightness / 2), 0, 0, 0);
-        }
-
-        public void SetKeyColor(Key k, byte r, byte g, byte b)
-        {
-            if (!_layout.TryGetValue(k, out var idx))
-                return;
-
-            SetCoordColor(idx.Row, idx.Column, r, g, b);
+            for (byte row = 0; row < Rows; row++)
+            {
+                for (byte col = 0; col < Columns; col++)
+                {
+                    SetCoordColor(row, col, r, g, b);
+                }
+            }
         }
 
         public void SetCoordColor(byte row, byte column, byte r, byte g, byte b)
         {
-            if (row > ROWS)
+            if (row > Rows)
                 throw new ArgumentOutOfRangeException(nameof(row));
-            if (column > COLUMNS)
+            if (column > Columns)
                 throw new ArgumentOutOfRangeException(nameof(column));
 
             //2 padding + which column + color offset
@@ -62,7 +58,7 @@ namespace TongFang
         {
             try
             {
-                for (byte i = 0; i < ROWS; i++)
+                for (byte i = 0; i < Rows; i++)
                 {
                     SetRowIndex(i);
                     _deviceStream.Write(_rows[i]);
