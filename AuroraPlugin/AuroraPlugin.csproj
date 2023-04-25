@@ -11,17 +11,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ILRepack.Lib.MSBuild.Task" Version="2.0.18.2" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\TongFang\TongFang.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="Aurora">
       <HintPath>..\..\Aurora\Build\Debug\win10-x64\Aurora.dll</HintPath>
-      <Private>false</Private>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
 
