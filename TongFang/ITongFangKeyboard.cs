@@ -5,10 +5,14 @@ namespace TongFang
 {
     public interface ITongFangKeyboard : IDisposable
     {
-        IEnumerable<Key> Keys { get; }
+        int Rows { get; }
 
-        void Update();
+        int Columns {get;}
 
-        void SetKeyColor(Key k, byte r, byte g, byte b);
+        void SetColor(byte r, byte g, byte b);
+
+        void SetCoordColor(byte row, byte column, byte r, byte g, byte b);
+
+        bool Update();
     }
 }
