@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Platforms>x64</Platforms>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ArtemisRGB.UI.Shared" IncludeAssets="compile;build;buildTransitive" Version="1.2023.420.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RGB.NET.Devices.TongFang\RGB.NET.Devices.TongFang.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Layouts\**" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="plugin.json" CopyToOutputDirectory="PreserveNewest" />
+    <PackageReference Include="ArtemisRGB.Plugins.BuildTask" Version="2.0.0" />
+  </ItemGroup>
+</Project>

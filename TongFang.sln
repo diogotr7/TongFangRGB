@@ -9,9 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuroraPlugin", "AuroraPlugin\AuroraPlugin.csproj", "{87280DC9-2358-463B-96B1-DD8B2BF967E4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtemisPlugin", "ArtemisPlugin\ArtemisPlugin\ArtemisPlugin.csproj", "{4CE38DFD-48AF-4857-9965-CC467BD48F0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Artemis.Plugins.Devices.TongFang", "ArtemisPlugin\Artemis.Plugins.Devices.TongFang\Artemis.Plugins.Devices.TongFang.csproj", "{4CE38DFD-48AF-4857-9965-CC467BD48F0E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RgbNetDeviceProvider", "ArtemisPlugin\RgbNetDeviceProvider\RgbNetDeviceProvider.csproj", "{949EA2AA-090F-4E52-9DE2-D3DBB9E15E9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RGB.NET.Devices.TongFang", "ArtemisPlugin\RGB.NET.Devices.TongFang\RGB.NET.Devices.TongFang.csproj", "{949EA2AA-090F-4E52-9DE2-D3DBB9E15E9A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Artemis", "Artemis", "{A2E2AE77-3D11-47C6-98AC-2CACAAA5AA27}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aurora", "Aurora", "{6F774839-C1EF-45B6-8CC9-2E1F4704BECE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,5 +49,10 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {918ABA50-C193-478D-AB71-6DBB889545C9}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4CE38DFD-48AF-4857-9965-CC467BD48F0E} = {A2E2AE77-3D11-47C6-98AC-2CACAAA5AA27}
+		{949EA2AA-090F-4E52-9DE2-D3DBB9E15E9A} = {A2E2AE77-3D11-47C6-98AC-2CACAAA5AA27}
+		{87280DC9-2358-463B-96B1-DD8B2BF967E4} = {6F774839-C1EF-45B6-8CC9-2E1F4704BECE}
 	EndGlobalSection
 EndGlobal

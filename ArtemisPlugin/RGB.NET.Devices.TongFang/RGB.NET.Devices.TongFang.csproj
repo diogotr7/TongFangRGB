@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="RGB.NET.Core" Version="1.0.0-prerelease7" />
+    <PackageReference Include="RGB.NET.Core" Version="2.0.0-prerelease.53" />
   </ItemGroup>
 
 </Project>
