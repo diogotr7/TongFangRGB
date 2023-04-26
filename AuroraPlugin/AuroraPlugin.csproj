@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ILRepack.Lib.MSBuild.Task" Version="2.0.18.2" />
+    <PackageReference Include="ILRepack.Lib.MSBuild" Version="2.1.18" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <Reference Include="Aurora">
-      <HintPath>..\..\Aurora\Build\Debug\win10-x64\Aurora.dll</HintPath>
+      <HintPath>..\..\Aurora\Build\Release\win10-x64\Aurora.dll</HintPath>
       <Private>false</Private>
     </Reference>
   </ItemGroup>
