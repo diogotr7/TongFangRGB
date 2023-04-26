@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Threading;
+using System.Threading.Tasks;
 using TongFang;
 
 namespace TongFangAuroraPlugin
@@ -19,22 +20,23 @@ namespace TongFangAuroraPlugin
         private ITongFangKeyboard _keyboard;
         private Layout _layout;
 
-        public override bool Initialize()
+        protected override Task<bool> DoInitialize()
         {
             _layout = Global.Configuration.VarRegistry.GetVariable<Layout>($"{DeviceName}_layout");
 
-            return IsInitialized = TongFindFinder.TryFind(out _keyboard);
+            return Task.FromResult(IsInitialized = TongFindFinder.TryFind(out _keyboard));
         }
 
-        public override void Shutdown()
+        public override Task Shutdown()
         {
             _keyboard.SetColor(0, 0, 0);
             _keyboard.Update();
             _keyboard.Dispose();
             IsInitialized = false;
+            return Task.CompletedTask;
         }
 
-        protected override bool UpdateDevice(Dictionary<DeviceKeys, Color> keyColors, DoWorkEventArgs e, bool forced = false)
+        protected override Task<bool> UpdateDevice(Dictionary<DeviceKeys, Color> keyColors, DoWorkEventArgs e, bool forced = false)
         {
             double rRatio = Global.Configuration.VarRegistry.GetVariable<int>($"{DeviceName}_scalar_r") / 255.0;
             double gRatio = Global.Configuration.VarRegistry.GetVariable<int>($"{DeviceName}_scalar_g") / 255.0;
@@ -57,7 +59,7 @@ namespace TongFangAuroraPlugin
 
             _keyboard.Update();
 
-            return true;
+            return Task.FromResult(true);
         }
 
         protected override void RegisterVariables(VariableRegistry variableRegistry)
