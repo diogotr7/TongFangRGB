@@ -16,5 +16,5 @@ jobs:
       - name: Upload 
         uses: actions/upload-artifact@v3
         with:
-          name: Discord
-          path: ArtemisPlugin/Artemis.Plugins.Devices.TongFang/bin/x64/Release/net7.0/publish
+          name: Artemis.Plugins.Devices.TongFang
+          path: ArtemisPlugin/Artemis.Plugins.Devices.TongFang/bin/Release/net7.0/publish
