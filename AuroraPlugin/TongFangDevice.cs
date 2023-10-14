@@ -27,7 +27,7 @@ namespace TongFangAuroraPlugin
             return Task.FromResult(IsInitialized = TongFindFinder.TryFind(out _keyboard));
         }
 
-        public override Task Shutdown()
+        protected override Task Shutdown()
         {
             _keyboard.SetColor(0, 0, 0);
             _keyboard.Update();
