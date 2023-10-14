@@ -2,6 +2,7 @@
 using Artemis.Core.Services;
 using RGB.NET.Devices.Tongfang;
 using System.IO;
+using RGB.NET.Core;
 
 namespace Artemis.Plugins.Devices.TongFang;
 
@@ -11,7 +12,7 @@ public class TongfangDeviceProvider : DeviceProvider
 {
     private readonly IRgbService _rgbService;
 
-    public TongfangDeviceProvider(IRgbService rgbService) : base(RGB.NET.Devices.Tongfang.TongfangDeviceProvider.Instance)
+    public TongfangDeviceProvider(IRgbService rgbService)
     {
         _rgbService = rgbService;
         CreateMissingLedsSupported = false;
@@ -33,4 +34,6 @@ public class TongfangDeviceProvider : DeviceProvider
         _rgbService.RemoveDeviceProvider(RgbDeviceProvider);
         RgbDeviceProvider.Dispose();
     }
+
+    public override IRGBDeviceProvider RgbDeviceProvider => RGB.NET.Devices.Tongfang.TongfangDeviceProvider.Instance;
 }
