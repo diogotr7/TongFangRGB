@@ -10,11 +10,11 @@ namespace Artemis.Plugins.Devices.TongFang;
 // You will not write any device logic in here, refer to the RGB.NET.Devices.TongFang project instead    
 public class TongfangDeviceProvider : DeviceProvider
 {
-    private readonly IRgbService _rgbService;
+    private readonly IDeviceService _deviceService;
 
-    public TongfangDeviceProvider(IRgbService rgbService)
+    public TongfangDeviceProvider(IDeviceService deviceService)
     {
-        _rgbService = rgbService;
+        _deviceService = deviceService;
         CreateMissingLedsSupported = false;
         RemoveExcessiveLedsSupported = true;
 
@@ -25,13 +25,13 @@ public class TongfangDeviceProvider : DeviceProvider
     public override void Enable()
     {
         // Let Artemis's RGB service know about our device provider
-        _rgbService.AddDeviceProvider(RgbDeviceProvider);
+        _deviceService.AddDeviceProvider(this);
     }
 
     public override void Disable()
     {
         // Before disposing your provider, let Artemis know it is gone
-        _rgbService.RemoveDeviceProvider(RgbDeviceProvider);
+        _deviceService.RemoveDeviceProvider(this);
         RgbDeviceProvider.Dispose();
     }
 
