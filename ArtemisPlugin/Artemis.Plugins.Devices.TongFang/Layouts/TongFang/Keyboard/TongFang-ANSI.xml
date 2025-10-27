@@ -5,12 +5,15 @@
     <Author>Riccorbypro</Author>
     <Type>Keyboard</Type>
     <Vendor>TongFang</Vendor>
-    <Width>384</Width>
-    <Height>125</Height>
+    <Width>342</Width>
+    <Height>100</Height>
     <LedUnitWidth>18</LedUnitWidth>
     <LedUnitHeight>18</LedUnitHeight>
     <Leds>
-        <Led Id="Keyboard_LeftCtrl"/>
+        <Led Id="Keyboard_LeftCtrl">
+            <Y>82</Y>
+            <X>1</X>
+        </Led>
         <Led Id="Keyboard_Function"/>
         <Led Id="Keyboard_LeftGui"/>
         <Led Id="Keyboard_LeftAlt"/>
@@ -63,7 +66,7 @@
         <Led Id="Keyboard_CommaAndLessThan">
             <X>-</X>
         </Led>
-        <Led Id="Keyboard_MinusAndUnderscore">
+        <Led Id="Keyboard_M">
             <X>-</X>
         </Led>
         <Led Id="Keyboard_N">
