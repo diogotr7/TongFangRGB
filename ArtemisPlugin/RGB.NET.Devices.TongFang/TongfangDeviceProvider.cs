@@ -25,7 +25,7 @@ public class TongfangDeviceProvider : AbstractRGBDeviceProvider
     /// <inheritdoc />
     protected override IEnumerable<IRGBDevice> LoadDevices()
     {
-        if (TongFindFinder.TryFind(out ITongFangKeyboard kb))
+        if (TongFindFinder.TryFindKeyboard(out ITongFangKeyboard kb))
             yield return new TongfangKeyboardRGBDevice(new TongfangKeyboardDeviceInfo(kb), new TongfangUpdateQueue(GetUpdateTrigger(), kb));
     }
 

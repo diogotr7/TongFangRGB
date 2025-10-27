@@ -10,16 +10,22 @@ namespace TongFang
     public static class TongFindFinder
     {
         private const int VID = 0x048D;
-        private const int PID = 0xCE00;
-        private const int PID2 = 0x6004;
+
+        private static readonly int[] KEYBOARD_PIDS = {
+            0xCE00,
+            0x6004,
+            0x600B
+        };
+
         private const uint USAGE_PAGE = 0xFF03;
         private const uint USAGE = 0x001;
 
-        public static bool TryFind(out ITongFangKeyboard keyboard)
+        public static bool TryFindKeyboard(out ITongFangKeyboard keyboard)
         {
             keyboard = null;
 
-            var devices = DeviceList.Local.GetHidDevices(VID).Where(d => d.ProductID == PID || d.ProductID == PID2);
+            var devices = DeviceList.Local.GetHidDevices(VID)
+                .Where(d => KEYBOARD_PIDS.Contains(d.ProductID));
 
             if (!devices.Any())
                 return false;
