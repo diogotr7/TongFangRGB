@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Device xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Name>TongFangRGB - Physical ANSI</Name>
+    <Description>Physical ISO-Layout of TongFang RGB</Description>
+    <Author>Riccorbypro</Author>
+    <Type>Keyboard</Type>
+    <Vendor>TongFang</Vendor>
+    <Width>384</Width>
+    <Height>125</Height>
+    <LedUnitWidth>18</LedUnitWidth>
+    <LedUnitHeight>18</LedUnitHeight>
+    <Leds>
+        <Led Id="Keyboard_LeftCtrl"/>
+        <Led Id="Keyboard_Function"/>
+        <Led Id="Keyboard_LeftGui"/>
+        <Led Id="Keyboard_LeftAlt"/>
+        <Led Id="Keyboard_Space">
+            <Width>5.0</Width>
+        </Led>
+        <Led Id="Keyboard_RightAlt"/>
+        <Led Id="Keyboard_Application">
+            <Width>1.8</Width>
+        </Led>
+        <Led Id="Keyboard_ArrowLeft">
+            <Y>+</Y>
+        </Led>
+        <Led Id="Keyboard_ArrowUp">
+            <Y>-</Y>
+        </Led>
+        <Led Id="Keyboard_ArrowDown">
+            <X>=</X>
+            <Y>+</Y>
+        </Led>
+        <Led Id="Keyboard_ArrowRight"/>
+        <Led Id="Keyboard_Num0">
+            <Y>-</Y>
+            <Width>2.0</Width>
+        </Led>
+        <Led Id="Keyboard_NumPeriodAndDelete"/>
+        <Led Id="Keyboard_NumEnter">
+            <Y>--18</Y>
+            <Height>2.0</Height>
+        </Led>
+        <Led Id="Keyboard_Num3">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_Num2">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_Num1">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_RightShift">
+            <X>-</X>
+            <Width>2.8</Width>
+        </Led>
+        <Led Id="Keyboard_SlashAndQuestionMark">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_PeriodAndBiggerThan">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_CommaAndLessThan">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_MinusAndUnderscore">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_N">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_B">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_V">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_C">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_X">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_Z">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_LeftShift">
+            <X>-</X>
+            <Width>2.0</Width>
+        </Led>
+        <Led Id="Keyboard_CapsLock">
+            <X>=</X>
+            <Y>-</Y>
+            <Width>1.5</Width>
+        </Led>
+        <Led Id="Keyboard_A"/>
+        <Led Id="Keyboard_S"/>
+        <Led Id="Keyboard_D"/>
+        <Led Id="Keyboard_F"/>
+        <Led Id="Keyboard_G"/>
+        <Led Id="Keyboard_H"/>
+        <Led Id="Keyboard_J"/>
+        <Led Id="Keyboard_K"/>
+        <Led Id="Keyboard_L"/>
+        <Led Id="Keyboard_SemicolonAndColon"/>
+        <Led Id="Keyboard_ApostropheAndDoubleQuote"/>
+        <Led Id="Keyboard_Enter">
+            <Width>2.3</Width>
+        </Led>
+        <Led Id="Keyboard_Num4"/>
+        <Led Id="Keyboard_Num5"/>
+        <Led Id="Keyboard_Num6"/>
+        <Led Id="Keyboard_NumPlus">
+            <Y>--18</Y>
+            <Height>2.0</Height>
+        </Led>
+        <Led Id="Keyboard_Num9">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_Num8">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_Num7">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_Backslash">
+            <X>-</X>
+            <Width>1.5</Width>
+        </Led>
+        <Led Id="Keyboard_BracketRight">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_BracketLeft">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_P">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_O">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_I">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_U">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_Y">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_T">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_R">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_E">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_W">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_Q">
+            <X>-</X>
+        </Led>
+        <Led Id="Keyboard_Tab">
+            <X>-</X>
+            <Width>1.3</Width>
+        </Led>
+        <Led Id="Keyboard_GraveAccentAndTilde">
+            <X>=</X>
+            <Y>-</Y>
+            <Width>0.8</Width>
+        </Led>
+        <Led Id="Keyboard_1"/>
+        <Led Id="Keyboard_2"/>
+        <Led Id="Keyboard_3"/>
+        <Led Id="Keyboard_4"/>
+        <Led Id="Keyboard_5"/>
+        <Led Id="Keyboard_6"/>
+        <Led Id="Keyboard_7"/>
+        <Led Id="Keyboard_8"/>
+        <Led Id="Keyboard_9"/>
+        <Led Id="Keyboard_0"/>
+        <Led Id="Keyboard_MinusAndUnderscore"/>
+        <Led Id="Keyboard_EqualsAndPlus"/>
+        <Led Id="Keyboard_Backspace">
+            <Width>2</Width>
+        </Led>
+        <Led Id="Keyboard_NumLock"/>
+        <Led Id="Keyboard_NumSlash"/>
+        <Led Id="Keyboard_NumAsterisk"/>
+        <Led Id="Keyboard_NumMinus"/>
+        <Led Id="Keyboard_End">
+            <X>=</X>
+            <Y>-</Y>
+            <Height>0.5</Height>
+        </Led>
+        <Led Id="Keyboard_PageDown">
+            <X>-</X>
+            <Height>0.5</Height>
+        </Led>
+        <Led Id="Keyboard_PageUp">
+            <X>-</X>
+            <Height>0.5</Height>
+        </Led>
+        <Led Id="Keyboard_Home">
+            <X>-</X>
+            <Height>0.5</Height>
+        </Led>
+        <Led Id="Keyboard_Delete">
+            <X>-</X>
+            <Width>0.925</Width>
+            <Height>0.5</Height>
+        </Led>
+        <Led Id="Keyboard_PrintScreen">
+            <X>-</X>
+            <Width>0.925</Width>
+            <Height>0.5</Height>
+        </Led>
+        <Led Id="Keyboard_Programmable1">
+            <X>-</X>
+            <Width>0.925</Width>
+            <Height>0.5</Height>
+        </Led>
+        <Led Id="Keyboard_F12">
+            <X>-</X>
+            <Width>0.925</Width>
+            <Height>0.5</Height>
+        </Led>
+        <Led Id="Keyboard_F11">
+            <X>-</X>
+            <Width>0.925</Width>
+            <Height>0.5</Height>
+        </Led>
+        <Led Id="Keyboard_F10">
+            <X>-</X>
+            <Width>0.925</Width>
+            <Height>0.5</Height>
+        </Led>
+        <Led Id="Keyboard_F9">
+            <X>-</X>
+            <Width>0.925</Width>
+            <Height>0.5</Height>
+        </Led>
+        <Led Id="Keyboard_F8">
+            <X>-</X>
+            <Width>0.925</Width>
+            <Height>0.5</Height>
+        </Led>
+        <Led Id="Keyboard_F7">
+            <X>-</X>
+            <Width>0.925</Width>
+            <Height>0.5</Height>
+        </Led>
+        <Led Id="Keyboard_F6">
+            <X>-</X>
+            <Width>0.925</Width>
+            <Height>0.5</Height>
+        </Led>
+        <Led Id="Keyboard_F5">
+            <X>-</X>
+            <Width>0.925</Width>
+            <Height>0.5</Height>
+        </Led>
+        <Led Id="Keyboard_F4">
+            <X>-</X>
+            <Width>0.925</Width>
+            <Height>0.5</Height>
+        </Led>
+        <Led Id="Keyboard_F3">
+            <X>-</X>
+            <Width>0.925</Width>
+            <Height>0.5</Height>
+        </Led>
+        <Led Id="Keyboard_F2">
+            <X>-</X>
+            <Width>0.925</Width>
+            <Height>0.5</Height>
+        </Led>
+        <Led Id="Keyboard_F1">
+            <X>-</X>
+            <Width>0.925</Width>
+            <Height>0.5</Height>
+        </Led>
+        <Led Id="Keyboard_Escape">
+            <X>-</X>
+            <Width>0.925</Width>
+            <Height>0.5</Height>
+        </Led>
+    </Leds>
+</Device>
