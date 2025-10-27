@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Device xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <Name>TongFangRGB - Physical ANSI</Name>
-    <Description>Physical ISO-Layout of TongFang RGB</Description>
+    <Description>Physical ANSI-Layout of TongFang RGB</Description>
     <Author>Riccorbypro</Author>
     <Type>Keyboard</Type>
     <Vendor>TongFang</Vendor>
