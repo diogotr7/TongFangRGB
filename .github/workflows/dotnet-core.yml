@@ -8,13 +8,13 @@ jobs:
 
     steps:
       - name: Clone Plugins
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
       - name: Build Plugins
         run: dotnet publish -c Release ArtemisPlugin/Artemis.Plugins.Devices.TongFang/Artemis.Plugins.Devices.TongFang.csproj
 
       - name: Upload 
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v6
         with:
           name: Artemis.Plugins.Devices.TongFang
-          path: ArtemisPlugin/Artemis.Plugins.Devices.TongFang/bin/Release/net7.0/publish
+          path: ArtemisPlugin/Artemis.Plugins.Devices.TongFang/bin/Release/net9.0/publish
