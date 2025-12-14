@@ -20,6 +20,8 @@ public class TongfangDeviceProvider : DeviceProvider
 
         CanDetectLogicalLayout = false;
         CanDetectPhysicalLayout = false;
+
+        SuspendSupported = false;
     }
 
     public override void Enable()

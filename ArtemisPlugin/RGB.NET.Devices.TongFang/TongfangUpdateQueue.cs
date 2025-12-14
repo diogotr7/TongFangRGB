@@ -13,7 +13,7 @@ public class TongfangUpdateQueue : UpdateQueue
         _keyboard = keyboard;
     }
 
-    protected override bool Update(in ReadOnlySpan<(object key, Color color)> dataSet)
+    protected override bool Update(ReadOnlySpan<(object key, Color color)> dataSet)
     {
         foreach ((object key, Color color) in dataSet)
         {

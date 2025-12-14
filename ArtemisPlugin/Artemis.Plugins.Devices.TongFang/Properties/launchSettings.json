@@ -6,7 +6,7 @@
     },
     "Windows Dev": {
       "commandName": "Executable",
-      "executablePath": "$(SolutionDir)\\..\\..\\Artemis\\src\\Artemis.UI.Windows\\bin\\Artemis.UI.Windows.exe"
+      "executablePath": "$(SolutionDir)\\..\\Artemis\\src\\Artemis.UI.Windows\\bin\\Artemis.UI.Windows.exe"
     }
   }
 }
